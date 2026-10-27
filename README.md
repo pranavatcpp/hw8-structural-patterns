@@ -117,11 +117,45 @@ off ($12.15). Regular leaves the subtotal unchanged at $13.50.
 
 Email, SMS, and Push delivery are simulated with console output.
 
+## JUnit tests
+
+Run all 35 tests (10 Bridge and 25 Decorator):
+
+```sh
+./mvnw test
+```
+
+The Apache Maven wrapper downloads Maven 3.9.11 when needed; a separate Maven
+installation is not required. Maven manages JUnit Jupiter 5.13.4 and runs tests
+with Surefire. The first run requires internet access. On Windows, use
+`mvnw.cmd test`. `sh test.sh` is also a shortcut on macOS/Linux.
+
+`pom.xml` preserves the existing `src/` and `tests/` directories. Maven writes
+compiled classes and test reports to `target/`, which is excluded from Git.
+The Java 8 compilation target may produce an obsolete-target warning on newer
+JDKs; this does not indicate a test failure.
+
+`tests/bridge/BridgeTest.java` has one named test for each of the 10 Bridge method
+declarations. The interface `NotificationChannel.send()` and abstract
+`PaymentNotification.createMessage()` have no method bodies, so their tests
+exercise the contracts through implementations. The other tests cover each
+channel, notification delegation, both online payment methods, cash on delivery,
+Bitcoin, and all eight driver scenarios. Tests share the `bridge` package to
+access protected message methods without changing production visibility.
+
+`tests/decorator/DecoratorTest.java` adds one named test for each of the 25
+Decorator method declarations. Interface and abstract declarations are exercised
+through implementations. Tests cover base prices and descriptions, stacked and
+repeated toppings, immutable order snapshots, totals, loyalty levels, rounding,
+invalid inputs, and the complete Decorator driver output.
+
 ## Project files
 
 - `src/bridge/`: payment notifications, channels, and `BridgeDriver`.
 - `src/decorator/`: food items, topping decorators, orders, loyalty status, and
   `DecoratorDriver`.
 - `run.sh`: compiles the project and runs both drivers.
+- `test.sh` and `tests/`: Maven test shortcut and Bridge/Decorator JUnit tests.
+- `pom.xml`, `mvnw`, `mvnw.cmd`, and `.mvn/`: Maven build and wrapper configuration.
 - `output/sample-output.txt`: captured output of both examples.
 - `build/`: generated Java classes, excluded from Git.

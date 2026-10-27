@@ -24,6 +24,12 @@ upon delivery rather than claiming that payment has already been received.
 message. The driver adds Bitcoin payments with Email and SMS using the existing
 channels without modifying them.
 
+## Bridge Part 3
+
+`PushChannel` implements `NotificationChannel` and prints Push messages to the
+console. The driver adds online payment and cash-on-delivery scenarios with Push
+without modifying any payment classes.
+
 ## Compile and run
 
 From this directory, with JDK 8 or newer:
@@ -36,5 +42,4 @@ java -cp build bridge.BridgeDriver
 
 In an IDE, mark `src` as the source directory and run `bridge.BridgeDriver`.
 
-Push notifications and the Decorator example will be added in
-subsequent commits.
+The Decorator example will be added in subsequent commits.

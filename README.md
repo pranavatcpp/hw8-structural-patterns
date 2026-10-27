@@ -1,6 +1,7 @@
 # HW8 Structural Design Patterns
 
-Java implementations for CS5800 Assignment 8.
+Java implementations for CS5800 Assignment 8: Bridge payment notifications and
+Decorator restaurant orders. Both examples use only the Java standard library.
 
 ## Bridge Part 1
 
@@ -71,7 +72,16 @@ $13.50; Regular, Silver, and Gold totals are $13.50, $12.83, and $12.15.
 
 ## Compile and run
 
-From this directory, with JDK 8 or newer:
+With JDK 8 or newer, run both examples from this directory:
+
+```sh
+sh run.sh
+```
+
+The script compiles the sources and stops if compilation or either driver fails.
+It uses the project directory even when called from another directory.
+
+To compile and run each driver manually:
 
 ```sh
 mkdir -p build
@@ -82,3 +92,36 @@ java -cp build decorator.DecoratorDriver
 
 In an IDE, mark `src` as the source directory and run `bridge.BridgeDriver` or
 `decorator.DecoratorDriver`.
+
+## Sample output and verification
+
+[Sample output](output/sample-output.txt) contains the actual output of `sh run.sh`.
+The project was compiled and run with JDK 24 with no compiler warnings.
+
+The Bridge driver demonstrates all eight required scenarios:
+
+| Part | Payment | Channel |
+| --- | --- | --- |
+| 1 | Online (credit card) | Email |
+| 1 | Online (PayPal) | SMS |
+| 1 | Cash on delivery | Email |
+| 1 | Cash on delivery | SMS |
+| 2 | Bitcoin | Email |
+| 2 | Bitcoin | SMS |
+| 3 | Online (credit card) | Push |
+| 3 | Cash on delivery | Push |
+
+The Decorator output was checked against the item prices: $6.25 + $2.75 + $4.50
+= $13.50. Silver applies 5% off ($12.825 rounded to $12.83); Gold applies 10%
+off ($12.15). Regular leaves the subtotal unchanged at $13.50.
+
+Email, SMS, and Push delivery are simulated with console output.
+
+## Project files
+
+- `src/bridge/`: payment notifications, channels, and `BridgeDriver`.
+- `src/decorator/`: food items, topping decorators, orders, loyalty status, and
+  `DecoratorDriver`.
+- `run.sh`: compiles the project and runs both drivers.
+- `output/sample-output.txt`: captured output of both examples.
+- `build/`: generated Java classes, excluded from Git.

@@ -1,0 +1,36 @@
+=== Bridge payment notifications ===
+1. Online payment with Email
+Email: Your online payment via credit card was received. Thank you for your order!
+
+2. Online payment with SMS
+SMS: Your online payment via PayPal was received. Thank you for your order!
+
+3. Cash on delivery with Email
+Email: Your cash-on-delivery order is confirmed. Please pay in cash upon delivery.
+
+4. Cash on delivery with SMS
+SMS: Your cash-on-delivery order is confirmed. Please pay in cash upon delivery.
+
+5. Bitcoin payment with Email
+Email: Your Bitcoin payment was received. Thank you for your order!
+
+6. Bitcoin payment with SMS
+SMS: Your Bitcoin payment was received. Thank you for your order!
+
+7. Online payment with Push
+Push: Your online payment via credit card was received. Thank you for your order!
+
+8. Cash on delivery with Push
+Push: Your cash-on-delivery order is confirmed. Please pay in cash upon delivery.
+
+=== Decorator restaurant orders ===
+Restaurant order
+Burger, Cheese, Onions: $6.25
+Fries, Ketchup: $2.75
+Hot dog, Ketchup, Cheese: $4.50
+Subtotal: $13.50
+
+Totals by loyalty status
+REGULAR: $13.50
+SILVER: $12.83
+GOLD: $12.15

@@ -18,6 +18,12 @@ on delivery with Email, and cash on delivery with SMS. The online examples cover
 both credit card and PayPal payments. Cash-on-delivery messages request payment
 upon delivery rather than claiming that payment has already been received.
 
+## Bridge Part 2
+
+`BitcoinPayment` extends `PaymentNotification` and provides a Bitcoin-specific
+message. The driver adds Bitcoin payments with Email and SMS using the existing
+channels without modifying them.
+
 ## Compile and run
 
 From this directory, with JDK 8 or newer:
@@ -30,5 +36,5 @@ java -cp build bridge.BridgeDriver
 
 In an IDE, mark `src` as the source directory and run `bridge.BridgeDriver`.
 
-Bitcoin payments, Push notifications, and the Decorator example will be added in
+Push notifications and the Decorator example will be added in
 subsequent commits.

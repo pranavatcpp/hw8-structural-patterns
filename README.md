@@ -30,16 +30,41 @@ channels without modifying them.
 console. The driver adds online payment and cash-on-delivery scenarios with Push
 without modifying any payment classes.
 
+## Decorator food items and toppings
+
+`FoodItem` defines `getDescription()` and `getCost()`. `Burger`, `Fries`, and
+`HotDog` implement this interface. `ToppingDecorator` also implements `FoodItem`
+and wraps another food item, adding a topping's description and cost.
+`Ketchup`, `Cheese`, and `Onions` extend the decorator, so toppings can be stacked
+or repeated without changing the food classes.
+
+Example: `new Onions(new Cheese(new Burger()))` describes a burger with cheese
+and onions and costs $6.25. Wrapping a food item does not modify the original.
+Prices use `BigDecimal` for exact decimal arithmetic.
+
+These example prices are chosen for the demonstration; the assignment does not
+specify prices.
+
+| Item or topping | Price |
+| --- | --- |
+| Burger | $5.00 |
+| Fries | $2.50 |
+| Hot dog | $3.50 |
+| Ketchup | $0.25 |
+| Cheese | $0.75 |
+| Onions | $0.50 |
+
 ## Compile and run
 
 From this directory, with JDK 8 or newer:
 
 ```sh
 mkdir -p build
-javac -d build src/bridge/*.java
+javac -d build src/bridge/*.java src/decorator/*.java
 java -cp build bridge.BridgeDriver
 ```
 
 In an IDE, mark `src` as the source directory and run `bridge.BridgeDriver`.
 
-The Decorator example will be added in subsequent commits.
+Restaurant orders, loyalty discounts, and a Decorator driver will be added in a
+subsequent commit.

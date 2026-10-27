@@ -54,6 +54,21 @@ specify prices.
 | Cheese | $0.75 |
 | Onions | $0.50 |
 
+## Orders and loyalty discounts
+
+`Order` stores a list of `FoodItem` objects, including any wrapped toppings, and
+sums their costs. Each decorated item is added once, so toppings are included
+without being counted separately. `getTotal()` applies a `LoyaltyStatus` discount
+to the subtotal. Reading or discounting an order does not change its items.
+
+The demonstration uses Regular (0%), Silver (5%), and Gold (10%) loyalty levels.
+These rates are example choices because the assignment does not specify them.
+The final discounted total is rounded to two decimal places using `HALF_UP`.
+
+`DecoratorDriver` creates a burger with cheese and onions ($6.25), fries with
+ketchup ($2.75), and a hot dog with ketchup and cheese ($4.50). The subtotal is
+$13.50; Regular, Silver, and Gold totals are $13.50, $12.83, and $12.15.
+
 ## Compile and run
 
 From this directory, with JDK 8 or newer:
@@ -62,9 +77,8 @@ From this directory, with JDK 8 or newer:
 mkdir -p build
 javac -d build src/bridge/*.java src/decorator/*.java
 java -cp build bridge.BridgeDriver
+java -cp build decorator.DecoratorDriver
 ```
 
-In an IDE, mark `src` as the source directory and run `bridge.BridgeDriver`.
-
-Restaurant orders, loyalty discounts, and a Decorator driver will be added in a
-subsequent commit.
+In an IDE, mark `src` as the source directory and run `bridge.BridgeDriver` or
+`decorator.DecoratorDriver`.
